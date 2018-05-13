@@ -1,0 +1,24 @@
+<style lang="less">
+// 样式
+</style>
+<template>
+<!-- 结构 -->
+  <view class="container">
+    优购
+  </view>
+</template>
+
+<script>
+// JS
+  import wepy from 'wepy'
+
+  export default class Index extends wepy.page {
+    // 配置
+    config = {
+      navigationBarTitleText: '优购'
+    }
+    onLoad() {
+      console.log('onLoad')
+    }
+  }
+</script>
