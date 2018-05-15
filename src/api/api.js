@@ -14,8 +14,14 @@ const getHomeNav = params => {
   return wxRequest('home/catitems', params).then(res => res.data)
 }
 
+// 获取楼层数据
+const getHomeFloor = params => {
+  return wxRequest('home/floordata', params).then(res => res.data)
+}
+
 // 统一导出api方法
 export default {
   getHomeSwiper,
-  getHomeNav
+  getHomeNav,
+  getHomeFloor
 }
