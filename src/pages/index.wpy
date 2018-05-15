@@ -172,6 +172,7 @@
 <script>
   // JS
   import wepy from 'wepy'
+  import api from '../api/api'
 
   export default class Index extends wepy.page {
     // 配置
@@ -185,53 +186,73 @@
     }
     onLoad() {
       console.log('onLoad')
+      console.log(api)
       // 轮播图
-      wepy.request({
-        url: 'https://itjustfun.cn/api/public/v1/home/swiperdata', // 开发者服务器接口地址",
-        data: '', // 请求的参数",
-        method: 'GET',
-        dataType: 'json', // 如果设为json，会尝试对返回的数据做一次 JSON.parse
-        success: res => {
-          // console.log(res)
-          if (res.data.meta.status === 200) {
-            this.swiperArr = res.data.data
+      api.getHomeSwiper().then(res => {
+        // console.log(res)
+        if (res.meta.status === 200) {
+          this.swiperArr = res.data
             // 小程序默认是单向数据绑定, wepy框架在原有的小程序基础上封装成立双向数据绑定
-            this.$apply() // 如果遇到异步函数, 需要用this.$apply()函数手动更新视图
+          this.$apply() // 如果遇到异步函数, 需要用this.$apply()函数手动更新视图
             // console.log(this.swiperArr)
-          } else {
-            console.log(res.data.meta.msg)
-          }
+        } else {
+          console.log(res.meta.msg)
         }
       })
+      // wepy.request({
+      //   url: 'https://itjustfun.cn/api/public/v1/home/swiperdata', // 开发者服务器接口地址",
+      //   data: '', // 请求的参数",
+      //   method: 'GET',
+      //   dataType: 'json' // 如果设为json，会尝试对返回的数据做一次 JSON.parse
+      // }).then(res => {
+      //   // console.log(res)
+      //   if (res.data.meta.status === 200) {
+      //     this.swiperArr = res.data.data
+      //       // 小程序默认是单向数据绑定, wepy框架在原有的小程序基础上封装成立双向数据绑定
+      //     this.$apply() // 如果遇到异步函数, 需要用this.$apply()函数手动更新视图
+      //       // console.log(this.swiperArr)
+      //   } else {
+      //     console.log(res.data.meta.msg)
+      //   }
+      // })
       // 导航栏
-      wepy.request({
-        url: 'https://itjustfun.cn/api/public/v1/home/catitems', // 开发者服务器接口地址",
-        data: '', // 请求的参数",
-        method: 'GET',
-        dataType: 'json', // 如果设为json，会尝试对返回的数据做一次 JSON.parse
-        success: res => {
-          // console.log(res)
-          if (res.data.meta.status === 200) {
-            this.navArr = res.data.data
-            this.$apply()
-          } else {
-            console.log(res.data.meta.msg)
-          }
+      api.getHomeNav().then(res => {
+        // console.log(res)
+        if (res.meta.status === 200) {
+          this.navArr = res.data
+          this.$apply()
+        } else {
+          console.log(res.meta.msg)
         }
       })
+      // wepy.request({
+      //   url: 'https://itjustfun.cn/api/public/v1/home/catitems', // 开发者服务器接口地址",
+      //   data: '', // 请求的参数",
+      //   method: 'GET',
+      //   dataType: 'json' // 如果设为json，会尝试对返回的数据做一次 JSON.parse
+      // }).then(res => {
+      //   // console.log(res)
+      //   if (res.data.meta.status === 200) {
+      //     this.navArr = res.data.data
+      //     this.$apply()
+      //   } else {
+      //     console.log(res.data.meta.msg)
+      //   }
+      // })
       // 楼层数据
       wepy.request({
         url: 'https://itjustfun.cn/api/public/v1/home/floordata', // 开发者服务器接口地址",
         data: '', // 请求的参数",
         method: 'GET',
-        dataType: 'json', // 如果设为json，会尝试对返回的数据做一次 JSON.parse
-        success: res => {
-          // console.log(res)
-          if (res.data.meta.status === 200) {
-            this.floorArr = res.data.data
+        dataType: 'json' // 如果设为json，会尝试对返回的数据做一次 JSON.parse
+      }).then(res => {
+        // console.log(res)
+        if (res.data.meta.status === 200) {
+          this.floorArr = res.data.data
             // this.floorArr[0].product_list.shift()
-            this.$apply()
-          }
+          this.$apply()
+        } else {
+          console.log(res.data.meta.msg)
         }
       })
     }
