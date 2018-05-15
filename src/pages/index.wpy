@@ -48,6 +48,10 @@
       }
     }
   }
+  .sub_img {
+    width: 750rpx;
+    height: 180rpx;
+  }
 </style>
 <template>
 <!-- 结构 -->
@@ -73,19 +77,21 @@
     <!-- 楼层栏 -->
     <view class="floor">
       <view class="floor_head">
-        <image src="/upload/pic_floor01_title@2x.png" class="floor_head_img"></image>
+        <image src="{{ floorArr[0].floor_title.image_src }}" class="floor_head_img"></image>
       </view>
       <view class="floor_body">
         <view class="floor_body_left">
-          <navigator hover-class="none">
-            <image class="floor_body_left_img" src="/upload/pic_floor01_1@2x.png"></image>
+          <navigator hover-class="none" url="{{ floorArr[0].product_list[0].navigator_url }}" open-type="{{ floorArr[0].product_list[0].open_type }}">
+            <image class="floor_body_left_img" src="{{ floorArr[0].product_list[0].image_src }}"></image>
           </navigator>
         </view>
         <view class="floor_body_right">
-          <navigator url="" hover-class="none">
-            <image src="/upload/pic_floor01_2@2x.png" class="floor_body_right_img"></image>
-          </navigator>
-          <navigator url="" hover-class="none">
+          <block wx:for="{{ floorArr[0].product_list }}" wx:key="index">
+            <navigator url="{{ item.navigator_url }}" hover-class="none">
+              <image src="{{ item.image_src }}" class="floor_body_right_img"></image>
+            </navigator>
+          </block>
+          <!-- <navigator url="" hover-class="none">
             <image src="/upload/pic_floor01_3@2x.png" class="floor_body_right_img"></image>
           </navigator>
           <navigator url="" hover-class="none">
@@ -93,10 +99,73 @@
           </navigator>
           <navigator url="" hover-class="none">
             <image src="/upload/pic_floor01_5@2x.png" class="floor_body_right_img"></image>
-          </navigator>
+          </navigator> -->
         </view>
       </view>
     </view>
+
+    <view>
+      <image src="/upload/pic_banner_small.png" class="sub_img"></image>
+    </view>
+
+    <view class="floor">
+      <view class="floor_head">
+        <image src="{{ floorArr[1].floor_title.image_src }}" class="floor_head_img"></image>
+      </view>
+      <view class="floor_body">
+        <view class="floor_body_left">
+          <navigator hover-class="none" url="{{ floorArr[1].product_list[0].navigator_url }}" open-type="{{ floorArr[1].product_list[0].open_type }}">
+            <image class="floor_body_left_img" src="{{ floorArr[1].product_list[0].image_src }}"></image>
+          </navigator>
+        </view>
+        <view class="floor_body_right">
+          <block wx:for="{{ floorArr[1].product_list }}" wx:key="index">
+            <navigator url="{{ item.navigator_url }}" hover-class="none">
+              <image src="{{ item.image_src }}" class="floor_body_right_img"></image>
+            </navigator>
+          </block>
+          <!-- <navigator url="" hover-class="none">
+            <image src="/upload/pic_floor01_3@2x.png" class="floor_body_right_img"></image>
+          </navigator>
+          <navigator url="" hover-class="none">
+            <image src="/upload/pic_floor01_4@2x.png" class="floor_body_right_img"></image>
+          </navigator>
+          <navigator url="" hover-class="none">
+            <image src="/upload/pic_floor01_5@2x.png" class="floor_body_right_img"></image>
+          </navigator> -->
+        </view>
+      </view>
+    </view>
+
+    <view class="floor">
+      <view class="floor_head">
+        <image src="{{ floorArr[2].floor_title.image_src }}" class="floor_head_img"></image>
+      </view>
+      <view class="floor_body">
+        <view class="floor_body_left">
+          <navigator hover-class="none" url="{{ floorArr[2].product_list[0].navigator_url }}" open-type="{{ floorArr[2].product_list[0].open_type }}">
+            <image class="floor_body_left_img" src="{{ floorArr[2].product_list[0].image_src }}"></image>
+          </navigator>
+        </view>
+        <view class="floor_body_right">
+          <block wx:for="{{ floorArr[2].product_list }}" wx:key="index">
+            <navigator url="{{ item.navigator_url }}" hover-class="none">
+              <image src="{{ item.image_src }}" class="floor_body_right_img"></image>
+            </navigator>
+          </block>
+          <!-- <navigator url="" hover-class="none">
+            <image src="/upload/pic_floor01_3@2x.png" class="floor_body_right_img"></image>
+          </navigator>
+          <navigator url="" hover-class="none">
+            <image src="/upload/pic_floor01_4@2x.png" class="floor_body_right_img"></image>
+          </navigator>
+          <navigator url="" hover-class="none">
+            <image src="/upload/pic_floor01_5@2x.png" class="floor_body_right_img"></image>
+          </navigator> -->
+        </view>
+      </view>
+    </view>
+
   </view>
 </template>
 
@@ -157,10 +226,11 @@
         method: 'GET',
         dataType: 'json', // 如果设为json，会尝试对返回的数据做一次 JSON.parse
         success: res => {
-          console.log(res)
+          // console.log(res)
           if (res.data.meta.status === 200) {
             this.floorArr = res.data.data
-            console.log(this.floorArr)
+            // this.floorArr[0].product_list.shift()
+            this.$apply()
           }
         }
       })
