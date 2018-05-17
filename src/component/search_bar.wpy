@@ -28,7 +28,7 @@
   }
 }
 page {
-  padding-top: 100rpx;
+  padding-top: 98rpx;
 }
 </style>
 
