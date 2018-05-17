@@ -4,18 +4,22 @@
 <template>
 <!-- 结构 -->
   <view class="container">
-    分类
+    <SearchBar></SearchBar>
   </view>
 </template>
 
 <script>
 // JS
   import wepy from 'wepy'
+  import SearchBar from '../component/search_bar'
 
   export default class Category extends wepy.page {
     // 配置
     config = {
       navigationBarTitleText: '分类'
+    }
+    components = {
+      SearchBar
     }
     onLoad() {
       console.log('onLoad')

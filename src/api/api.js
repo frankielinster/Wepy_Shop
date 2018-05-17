@@ -19,9 +19,15 @@ const getHomeFloor = params => {
   return wxRequest('home/floordata', params).then(res => res.data)
 }
 
+// 根据id获取商品详情
+const getProductDetail = params => {
+  return wxRequest('goods/detail', params).then(res => res.data)
+}
+
 // 统一导出api方法
 export default {
   getHomeSwiper,
   getHomeNav,
-  getHomeFloor
+  getHomeFloor,
+  getProductDetail
 }

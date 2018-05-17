@@ -1,7 +1,8 @@
 <style lang="less">
+@import '/style/iconfont.wxss';
 page {
   background-color: #f4f4f4;
-  font-size: 14rpx;
+  font-size: 24rpx;
   color: #333;
 }
 </style>
