@@ -308,7 +308,7 @@
             <text class="item-note">联系客服</text>
         </view>
         <view class="item" @tap="goToTabBarCart">
-            <view class="iconfont icon-cart"></view>
+            <view class="iconfont icon-gouwuche"></view>
             <text class="item-note">购物车</text>
         </view>
         <view class="btn-group">
@@ -388,7 +388,7 @@ export default class GoodsDetail extends wepy.page {
         goodsCartInfo[item] = this.goodsDetail[item]
       })
       console.log(goodsCartInfo)
-
+      goodsCartInfo.selectStatus = true
       let cartDataArr = wepy.getStorageSync('cartDataArr') || []
       // 封装一个方法, 用于goods_id校验当前商品是否存在于本地存储cartDataArr中
       let goodsCartIndex = this._goodsCheckInCartByGoodsId(

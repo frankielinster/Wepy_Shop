@@ -133,7 +133,7 @@
 
     <!-- 底部 -->
     <view class="footer_tip">
-      <view class="iconfont icon-smile"></view>
+      <view class="iconfont icon-xiao"></view>
       <view class="footer_tip_text">我也是有底线的捏!</view>
     </view>
 
