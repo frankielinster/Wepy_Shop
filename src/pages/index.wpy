@@ -159,8 +159,8 @@
       navArr: [],
       floorArr: []
     }
-    onLoad() {
-      console.log('onLoad')
+    onLoad(options) {
+      console.log('onLoad', options)
       console.log(api)
       // 轮播图
       api.getHomeSwiper().then(res => {
